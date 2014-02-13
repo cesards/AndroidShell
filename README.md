@@ -1,7 +1,5 @@
-AndroidShell
+AndroidShell (Mac Os Commands)
 ============
-
-<h2>MAC OS Commands</h2>
 
 __MAPS__
 
