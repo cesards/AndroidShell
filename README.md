@@ -1,16 +1,16 @@
 AndroidShell (Mac Os Commands)
 ============
 
-__MAPS__
+<h4>MAPS</h4>
 
-Debug KeyStore
+__Debug KeyStore__
 ```
 keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
 ```
 
-__ADB__
+<h4>ADB</h4>
 
-Simulate Application Being Killed
+__Simulate Application Being Killed___
 ```
 // 1 - Exit your app using home button
 // 2 - After that
@@ -18,3 +18,16 @@ adb shell ps // Find the process id
 adb shell ps | grep your.app.package // Then find the line with app name package
 adb shell kill -9 21997 // Kill the app by PID
 // 3 - Now return to the app using the task switcher
+```
+
+__Screen Recording using Android 4.4__
+```
+
+adb shell screenrecord --verbose /sdcard/nexus5.mp4 // Basic recording from shell
+// Press Ctrl-C to stop
+screenrecord --verbose --time-limit 30 /sdcard/nexus5.mp4 // Recording for 30 seconds
+screenrecord --verbose --bit-rate 8000000 --time-limit 30 /sdcard/nexus5.mp4 // Recording for 30 seconds with 8Mbps bitrate
+screenrecord --verbose --rotate /sdcard/nexus5.mp4 // Record in portrait view / horizontal
+
+
+
