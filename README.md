@@ -22,12 +22,9 @@ adb shell kill -9 21997 // Kill the app by PID
 
 __Screen Recording using Android 4.4__
 ```
-
 adb shell screenrecord --verbose /sdcard/nexus5.mp4 // Basic recording from shell
 // Press Ctrl-C to stop
 screenrecord --verbose --time-limit 30 /sdcard/nexus5.mp4 // Recording for 30 seconds
 screenrecord --verbose --bit-rate 8000000 --time-limit 30 /sdcard/nexus5.mp4 // Recording for 30 seconds with 8Mbps bitrate
 screenrecord --verbose --rotate /sdcard/nexus5.mp4 // Record in portrait view / horizontal
-
-
-
+```
