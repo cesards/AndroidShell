@@ -10,7 +10,7 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 
 <h3>ADB</h3>
 
-<h4>Simulate Application Being Killed<h4>
+<h4>Simulate Application Being Killed</h4>
 ```
 // 1 - Exit your app using home button
 // 2 - After that
@@ -49,34 +49,34 @@ cd apps/<package_name>
 <h4>Use ADB over Wi-Fi without extra application or software</h4>
 __Prerequisites__
 Android device and computer should be connected in same network.  
-1. Connect Android device with USB cable to computer
-2. Use following command in terminal to make sure adb is running in USB mode.
+* Connect Android device with USB cable to computer
+* Use following command in terminal to make sure adb is running in USB mode.
 ```
 $adb usb
 // Restarting in USB mode
 // Connect to the device over USB.
 ```
 
-3. Execute following command in terminal to make sure adb identify/list gets connected with the device.
+* Execute following command in terminal to make sure adb identify/list gets connected with the device.
 ```
 $adb devices
 ```
 
-4. Change adb mode from USB to tcpip using following command. 
+* Change adb mode from USB to tcpip using following command. 
 ```
 $adb tcpip 5555
 // Restarting in TCP mode port: 5555
 ```
 
-5. Now, adb is running over TCP/IP mode, Let’s find IP address of Android device. Go to Settings in Android device -> About -> Status -> IP address. note down the IP address of connected Android Device.
-6. Use following command to connect ADB with IP address
+* Now, adb is running over TCP/IP mode, Let’s find IP address of Android device. Go to Settings in Android device -> About -> Status -> IP address. note down the IP address of connected Android Device.
+* Use following command to connect ADB with IP address
 ```
 $adb connect #.#.#.# 
 // Connected to #.#.#.#:5555
 ```
 
-7. Now adb is working over Wi-fi, You can remove USB cable from Android device.
-8. To confirm adb is working over Wi-fi and your device is still connect. you can use following command
+* Now adb is working over Wi-fi, You can remove USB cable from Android device.
+* To confirm adb is working over Wi-fi and your device is still connect. you can use following command
 ```
 $adb devices
 #.#.#.#:5555 device
