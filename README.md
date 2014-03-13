@@ -46,7 +46,39 @@ cd apps/<package_name>
 > - works on Nexus 5 at least, might not work with other devices.
 > __allowBackup=false will break thos method__
 
-
-
-
-
+<h5>Use ADB over Wi-Fi without extra application or software</h5>
+__Prerequisites__
+Android device and computer should be connected in same network.  
+1. Connect Android device with USB cable to computer
+2. Use following command in terminal to make sure adb is running in USB mode.
+```
+$adb usb
+// Restarting in USB mode
+// Connect to the device over USB.
+```
+3. Execute following command in terminal to make sure adb identify/list gets connected with the device.
+```
+$adb devices
+```
+4. Change adb mode from USB to tcpip using following command. 
+```
+$adb tcpip 5555
+// Restarting in TCP mode port: 5555
+```
+5. Now, adb is running over TCP/IP mode, Let’s find IP address of Android device. Go to Settings in Android device -> About -> Status -> IP address. note down the IP address of connected Android Device.
+6. Use following command to connect ADB with IP address
+```
+$adb connect #.#.#.# 
+// Connected to #.#.#.#:5555
+```
+7. Now adb is working over Wi-fi, You can remove USB cable from Android device.
+8. To confirm adb is working over Wi-fi and your device is still connect. you can use following command
+```
+$adb devices
+#.#.#.#:5555 device
+```
+You’re now ready to go!, Enjoy ADB over Wi-fi.
+Note:  Use following command to change ADB mode to USB
+```
+$adb usb
+```
