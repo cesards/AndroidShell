@@ -10,7 +10,7 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 
 <h3>ADB</h3>
 
-<h4>Simulate Application Being Killed<h4
+<h4>Simulate Application Being Killed<h4>
 ```
 // 1 - Exit your app using home button
 // 2 - After that
@@ -46,7 +46,7 @@ cd apps/<package_name>
 > - works on Nexus 5 at least, might not work with other devices.
 > __allowBackup=false will break thos method__
 
-<h4>Use ADB over Wi-Fi without extra application or software<h4>
+<h4>Use ADB over Wi-Fi without extra application or software</h4>
 __Prerequisites__
 Android device and computer should be connected in same network.  
 1. Connect Android device with USB cable to computer
