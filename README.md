@@ -10,7 +10,7 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 
 <h4>ADB</h4>
 
-__Simulate Application Being Killed___
+__Simulate Application Being Killed__
 ```
 // 1 - Exit your app using home button
 // 2 - After that
@@ -28,3 +28,25 @@ screenrecord --verbose --time-limit 30 /sdcard/nexus5.mp4 // Recording for 30 se
 screenrecord --verbose --bit-rate 8000000 --time-limit 30 /sdcard/nexus5.mp4 // Recording for 30 seconds with 8Mbps bitrate
 screenrecord --verbose --rotate /sdcard/nexus5.mp4 // Record in portrait view / horizontal
 ```
+
+__Retrieve application's private data and databases for non debug application without root access__
+```
+// Get a backup of your application data
+adb backup --apk <package_name>
+// Change the .ab in .tar
+dd if=backup.ab bs=24 skip=1 | openssl zlib -d > backup.tar
+// Untar  backup.tar
+tar xfv backup.tar
+// Go in you app private dir
+cd apps/<package_name>
+```
+> You'll need :
+> - adb activated
+> - physical access to unlocked device
+> - works on Nexus 5 at least, might not work with other devices.
+> __allowBackup=false will break thos method__
+
+
+
+
+
