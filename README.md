@@ -87,3 +87,18 @@ Use following command to change ADB mode to USB
 ```
 $adb usb
 ```
+
+<h4>See the executed SQL statements in plain text in logcat</h4>
+```
+adb shell setprop log.tag.SQLiteLog V
+adb shell setprop log.tag.SQLiteStatements V
+adb shell stop
+adb shell start
+```
+That's it. Whenever any of the installed apps now accesses the database you should see the executed statement in the log output.
+
+
+
+
+
+
