@@ -97,10 +97,7 @@ adb shell start
 ```
 That's it. Whenever any of the installed apps now accesses the database you should see the executed statement in the log output.
 
-
-<h3>Testing</h3>
-
-<h4>Execute Monkey to test user interaction</h4>
+<h4>Testing - Execute Monkey to test user interaction</h4>
 
 The Monkey is a program that runs on your emulator or device and generates pseudo-random streams of user events such as clicks, touches, or gestures, as well as a number of system-level events. You can use the Monkey to stress-test applications that you are developing, in a random yet repeatable manner.
 
