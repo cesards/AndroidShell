@@ -10,7 +10,58 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 
 <h3>ADB</h3>
 
-<h4>Simulate Application Being Killed</h4>
+<h4>View connected devices</h4>
+```
+adb devices
+```
+If multiple devices are attached, use `adb -s DEVICE_ID` to target a specific device
+
+<h4>Install an application</h4>
+```
+adb install -r file.apk
+// Optional -r argument reinstalls and keeps any data if the application is already installed on the device
+```
+
+<h4>Uninstall an application</h4>
+```
+adb uninstall com.package.name
+```
+
+<h4>Start an activity</h4>
+```
+adb shell am start -n com.package.name/.ActivityName
+adb shell am start -n com.package.name/com.package.name.ActivityName
+```
+<h4>Take a screenshot</h4>
+```
+adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > screen_name.png
+```
+Explanation of this command, [here](http://blog.shvetsov.com/2013/02/grab-android-screenshot-to-computer-via.html)
+
+<h4>Power button</h4>
+```
+adb shell input keyevent 26
+adb shell inout text "KEYCODE_POWER"
+```
+This command sends the power button event to turn the device ON/OFF
+
+<h4>Unlock screen</h4>
+```
+adb shell input keyevent 82
+adb shell inout text "KEYCODE_MENU"
+```
+This command sends the event that unlocks the lockscreen on the device. It can be combined with the power button command above to turn on and unlock the device
+```
+adb shell input keyevent 26 82
+adb shell inout text "KEYCODE_POWER" "KEYCODE_MENU"
+```
+
+<h4>Print all installed packages</h4>
+```
+adb shell pm list packages -f
+```
+
+<h4>Simulate application being killed</h4>
 ```
 // 1 - Exit your app using home button
 // 2 - After that
@@ -20,7 +71,7 @@ adb shell kill -9 21997 // Kill the app by PID
 // 3 - Now return to the app using the task switcher
 ```
 
-<h4>Screen Recording using Android 4.4</h4>
+<h4>Screen recording using Android 4.4</h4>
 ```
 adb shell screenrecord --verbose /sdcard/nexus5.mp4 // Basic recording from shell
 // Press Ctrl-C to stop
@@ -32,13 +83,13 @@ screenrecord --verbose --rotate /sdcard/nexus5.mp4 // Record in portrait view / 
 <h4>Retrieve application's private data and databases for non debug application without root access</h4>
 ```
 // Get a backup of your application data
-adb backup --apk <package_name>
+adb backup --apk com.package.name
 // Change the .ab in .tar
 dd if=backup.ab bs=24 skip=1 | openssl zlib -d > backup.tar
 // Untar  backup.tar
 tar xfv backup.tar
 // Go in you app private dir
-cd apps/<package_name>
+cd apps/com.package.name
 ```
 > You'll need :
 > - adb activated
@@ -87,6 +138,28 @@ Use following command to change ADB mode to USB
 ```
 $adb usb
 ```
+
+<h4>Filter by tagname in logcat</h4>
+```
+adb logcat -s TAG_NAME
+adb logcat -s TAG_NAME_1 TAG_NAME_2
+```
+
+<h4>Filter by priority in logcat</h4>
+```
+adb logcat "*:<priority>"
+// Where <priority> can be V (Verbose), D (Debug), I (Info), W (Warning), E (Error), F (Fatal), S (Silent)
+```
+It can be combined with tagname command, to filter by tagname and priority
+```
+adb logcat -s TEST: W
+```
+
+<h4>Filter using grep in logcat</h4>
+```
+adb logcat | grep "term"
+adb logcat | grep "term1\|term2"
+````
 
 <h4>See the executed SQL statements in plain text in logcat</h4>
 ```
