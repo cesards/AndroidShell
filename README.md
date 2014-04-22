@@ -26,6 +26,10 @@ adb install -r file.apk
 ```
 adb uninstall com.package.name
 ```
+To uninstall the application using uninstall dialog:
+```
+adb shell am start -a android.intent.action.DELETE -d package:com.package.name
+```
 
 <h4>Start an activity</h4>
 ```
