@@ -1,7 +1,7 @@
 AndroidShell (Mac Os Commands)
 ============
 
-<h3>DB</h3>
+<h3>DataBase</h3>
 
 __DB Getter (Script)__
 
@@ -9,8 +9,8 @@ __DB Getter (Script)__
 #!/bin/bash
  
 # Android 4.3+ changes app's internal directory permissions and you can not just pull your 
-# databases to your computer, so I did this as a workaround to extract my databases.
-# I only use it for debug, use it under your responsability.
+# databases to your computer, so this is a workaround to extract your databases.
+# I only use it for debug, use it under YOUR responsability.
  
 package=$1
 db_name=$2
