@@ -1,35 +1,23 @@
 AndroidShell (Mac Os Commands)
-============
+=============================
 
-<h3>DataBase</h3>
+Summary:
+<br>
+<a href="#maps">Maps<br>
+<a href="#adb">ADB<br>
+<a href="#db">Database<br>
+<br>
 
-__DB Getter (Script)__ [by Ignasi](https://gist.github.com/ignasi)
-
-```
-#!/bin/bash
- 
-# Android 4.3+ changes app's internal directory permissions and you can not just pull your 
-# databases to your computer, so this is a workaround to extract your databases.
-# I only use it for debug, use it under YOUR responsability. IT REQUIRES ROOT
- 
-package=$1
-db_name=$2
-path="/data/data/$package/"
- 
-rm $db_name
-adb shell "su -c 'cd $path; chmod -R 777 databases; exit'; exit"
-adb pull $path/databases/$db_name
-open $db_name
-```
-
-<h3>MAPS</h3>
+<a name="maps">
+### MAPS</a>
 
 __Debug KeyStore__
 ```
 keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
 ```
 
-<h3>ADB</h3>
+<a name="adb">
+### ADB</a>
 
 <h4>View connected devices</h4>
 ```
@@ -206,6 +194,26 @@ adb shell monkey -p your.package.name -v 500
 ```
 Complete information at http://developer.android.com/tools/help/monkey.html
 
+<a name="db">
+### Database</a>
 
+__DB Getter (Script)__ [by Ignasi](https://gist.github.com/ignasi)
+
+```
+#!/bin/bash
+ 
+# Android 4.3+ changes app's internal directory permissions and you can not just pull your 
+# databases to your computer, so this is a workaround to extract your databases.
+# I only use it for debug, use it under YOUR responsability. IT REQUIRES ROOT
+ 
+package=$1
+db_name=$2
+path="/data/data/$package/"
+ 
+rm $db_name
+adb shell "su -c 'cd $path; chmod -R 777 databases; exit'; exit"
+adb pull $path/databases/$db_name
+open $db_name
+```
 
 
