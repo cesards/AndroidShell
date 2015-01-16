@@ -110,6 +110,13 @@ cd apps/com.package.name
 > - works on Nexus 5 at least, might not work with other devices.
 > __allowBackup=false will break thos method__
 
+<h4>Check Battery Stats</h4>
+```
+$adb shell dumpsys batterystats
+// Global and per-UID statistics
+// options: --help
+```
+
 <h4>Use ADB over Wi-Fi without extra application or software</h4>
 __Prerequisites__
 Android device and computer should be connected in same network.  
