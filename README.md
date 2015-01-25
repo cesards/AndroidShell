@@ -201,6 +201,25 @@ adb shell monkey -p your.package.name -v 500
 ```
 Complete information at http://developer.android.com/tools/help/monkey.html
 
+<h4>Indentify Frame Rate Issues</h4>
+```
+cd platform-tools/
+// Before executing next command, go to Settings --> Developer Options --> Enable Profile GPU rendering option
+// And make sure to kill your application first or at least to kill the window that you want to profile, and then you run the command:
+adb shell dumpsys gfxinfo
+```
+Purpose of Dumpsys is identifying frame rate issues and fix them.
+
+What matter is the three columns shown. Copy paste results in a spreadsheet. And you will get a result like this one:
+
+[Image]
+
+This is the data you can grab. You can create a stack graph, so every bar contains the sum of the three columns on the left in the data we output. Is the time it takes to update the display list on every frame. 
+
+* The middle column is called process display list. It's the time we take to draw the actual display list
+* The last column is the time we take to swap the buffers, so to give the buffer back to surface flinger. Scrolling or doing any kind of actions should be below 16 millisecond limit. So this app is running at 60FPS, we're vsync'd, everything is going great. You can see that most of the time, you should spend most of the time in process display list, so drawing, executing the display list should be where you spend the bulk of the time.
+* The blue part is your code. When you write your Java code, your `onDraw()` method, and this is where you can do most of the optimizations
+
 <a name="db">
 ### Database</a>
 
