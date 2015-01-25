@@ -201,7 +201,7 @@ adb shell monkey -p your.package.name -v 500
 ```
 Complete information at http://developer.android.com/tools/help/monkey.html
 
-<h4>Indentify Frame Rate Issues</h4>
+<h4>Indentify Frame Rate Issues (Dumpsys)</h4>
 ```
 cd platform-tools/
 // Before executing next command, go to Settings --> Developer Options --> Enable Profile GPU rendering option
@@ -212,7 +212,7 @@ Purpose of Dumpsys is identifying frame rate issues and fix them.
 
 What matter is the three columns shown. Copy paste results in a spreadsheet. And you will get a result like this one:
 
-[Image]
+![Image](./images/dumpsys_sample.png)
 
 This is the data you can grab. You can create a stack graph, so every bar contains the sum of the three columns on the left in the data we output. Is the time it takes to update the display list on every frame. 
 
