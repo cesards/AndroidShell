@@ -220,6 +220,15 @@ This is the data you can grab. You can create a stack graph, so every bar contai
 * The last column is the time we take to swap the buffers, so to give the buffer back to surface flinger. Scrolling or doing any kind of actions should be below 16 millisecond limit. So this app is running at 60FPS, we're vsync'd, everything is going great. You can see that most of the time, you should spend most of the time in process display list, so drawing, executing the display list should be where you spend the bulk of the time.
 * The blue part is your code. When you write your Java code, your `onDraw()` method, and this is where you can do most of the optimizations
 
+There is a distinction between the GPU composition with frame buffers and overlays. So you can use a tool called __dumpsys surface flinger__ to see the state of overlays and frame buffers in the system.
+```
+adb shell dumpsys SurfaceFlinger
+```
+
+You're going to get a list with all the windows currently visible on the screen.
+
+More info about this tool, [here](https://www.youtube.com/watch?v=Q8m9sHdyXnE#t=2469)
+
 <a name="db">
 ### Database</a>
 
