@@ -10,7 +10,7 @@ Summary:
 
 <a name="sha1">
 ### SHA1</a>
-In order to get SHA1 to use it in many services, like Google+ Sign In, Maps, In app purchases, we should generate keys for every keystore (certificate):
+In order to get SHA1 to use it in many services, like Google+ Sign In, Maps, In app purchases, we should generate keys for every keystore (certificate):<br>
 __Debug KeyStore__
 ```
 keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
