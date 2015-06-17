@@ -3,17 +3,23 @@ AndroidShell (Mac Os Commands)
 
 Summary:
 <br>
-<a href="#maps">Maps<br>
+<a href="#sha1">SHA1<br>
 <a href="#adb">ADB<br>
 <a href="#db">Database<br>
 <br>
 
-<a name="maps">
-### MAPS</a>
-
+<a name="sha1">
+### SHA1</a>
+In order to get SHA1 to use it in many services, like Google+ Sign In, Maps, In app purchases, we should generate keys for every keystore (certificate):
 __Debug KeyStore__
 ```
 keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+// or
+keytool -list -v -keystore {path_to_keystore}/debug.keystore -alias androiddebugkey -storepass android -keypass android
+```
+__Release KeyStore__
+```
+keytool -list -v -keystore {path_to_keystore}/my-release.keystore -alias {alias_name} -storepass {store_pass} -keypass {keypass}
 ```
 
 <a name="adb">
