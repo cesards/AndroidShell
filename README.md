@@ -118,10 +118,21 @@ cd apps/com.package.name
 > __allowBackup=false will break thos method__
 
 <h4>Check Battery Stats</h4>
-```
+```sh
 $adb shell dumpsys batterystats
-// Global and per-UID statistics
-// options: --help
+# Global and per-UID statistics
+# options: --help
+```
+
+<h4>Auto Backup Data (Only in Android M)</h4>
+```
+$adb shell bmgr
+
+$adb shell bmgr run
+# do some work in the app
+$adb shell bmgr fullbackup com.domain.android.app_name
+# uninstall and reinstall the app
+$adb shell bmgr restore com.domain.android.app_name
 ```
 
 <h4>Use ADB over Wi-Fi without extra application or software</h4>
