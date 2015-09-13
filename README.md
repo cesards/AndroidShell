@@ -25,6 +25,19 @@ $ keytool -list -v -keystore {path_to_keystore}/my-release.keystore -alias {alia
 <a name="adb">
 ### ADB</a>
 
+<h4>Watching StrictMode</h4>
+
+If you’re using `penaltyLog()`, the default, just run 
+```sh
+adb logcat 
+```
+and watch the terminal output. Any violations will be logged to your console, slightly rate-limited for duplicate elimination.
+
+If you want to get fancier, turn on `penaltyDropbox()` and they’ll be written to the DropBoxManager, where you can extract them later with
+```sh
+adb shell dumpsys dropbox data_app_strictmode --print
+```
+
 <h4>View connected devices</h4>
 ```sh
 $ adb devices
