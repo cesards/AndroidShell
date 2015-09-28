@@ -236,6 +236,11 @@ $ adb shell monkey -p your.package.name -v 500
 ```
 Complete information at http://developer.android.com/tools/help/monkey.html
 
+<h4>Find out processor version on Android Device (check if it's an ARM, for example)</h4>
+```sh
+$ adb shell cat /proc/cpuinfo
+```
+
 <h4>Indentify Frame Rate Issues (Dumpsys)</h4>
 ```sh
 $ cd platform-tools/
