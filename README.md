@@ -30,7 +30,9 @@
  - <a href="#retrieve_app_private_data_and_db_without_root">__Retrieve application's private data and databases for non debug application without root access__</a>
  - <a href="#identify_frame_rate_issues">__Indentify Frame Rate Issues (Dumpsys)__</a>
  - <a href="#adb_over_wifi">__Use ADB over Wi-Fi without extra application or software__</a>
- 
+- <a href="#aapt">__AAPT__</a>
+ - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
+
 <br>
 
 <a name="sha1">
@@ -373,3 +375,69 @@ Use following command to change ADB mode to USB
 ```sh
 $ adb usb
 ```
+
+<br>
+
+<a name="aapt">
+### AAPT
+
+<a name="check_permissions_avoid_play_store_app_filtering">
+#### Check Permissions in order to avoid Play Store app filtering
+
+[__Source__](https://goo.gl/jpxeLO)
+
+Certain permissions also imply certain features. Google Play uses these to filter out apps just as it would with explicit requirements. Developers should __NOT__ rely on this implicit behavior, they should always declare explicitly every feature their app needs.
+
+__aapt__ allows us, among other things, to see the contents of an app’s manifest. This is not as easy as simply unpacking the apk and reading the manifest as you’ll find it’s in a binary format. Here is the result of running the SDK-provided aapt tool in its apk:
+```sh
+$ aapt dump badging com.your-app.apk
+```
+Output
+```
+package: name='com.germanwings.android' versionCode='3' versionName='1.0.2' sdkVersion:'10' targetSdkVersion:'17'
+uses-permission:'android.permission.WRITE_EXTERNAL_STORAGE'
+uses-permission:'android.permission.INTERNET'
+uses-permission:'android.permission.ACCESS_FINE_LOCATION'
+uses-permission:'android.permission.ACCESS_COARSE_LOCATION'
+uses-permission:'com.germanwings.android.permission.C2D_MESSAGE'
+uses-permission:'android.permission.ACCESS_LOCATION_EXTRA_COMMANDS'
+uses-permission:'android.permission.INTERNET'
+uses-permission:'android.permission.GET_ACCOUNTS'
+uses-permission:'android.permission.WAKE_LOCK'
+uses-permission:'android.permission.READ_PHONE_STATE'
+uses-permission:'com.google.android.c2dm.permission.RECEIVE'
+uses-permission:'android.permission.ACCESS_LOCATION_EXTRA_COMMANDS'
+uses-permission:'android.permission.ACCESS_MOCK_LOCATION'
+uses-permission:'android.permission.ACCESS_NETWORK_STATE'
+uses-permission:'android.permission.ACCESS_GPS'
+uses-permission:'android.permission.ACCESS_LOCATION'
+uses-permission:'android.permission.READ_EXTERNAL_STORAGE'
+application-label:'Germanwings'
+application-icon-120:'res/drawable-ldpi/ic_launcher.png'
+application-icon-160:'res/drawable-mdpi/ic_launcher.png'
+application-icon-240:'res/drawable-hdpi/ic_launcher.png'
+application-icon-320:'res/drawable-xhdpi/ic_launcher.png'
+application: label='Germanwings' icon='res/drawable-mdpi/ic_launcher.png'
+launchable-activity: name='com.germanwings.android.presentation.activity.DashboardActivity' label='Germanwings' icon=''
+uses-feature:'android.hardware.location'
+uses-implied-feature:'android.hardware.location','requested a location access permission'
+uses-feature:'android.hardware.location.gps'
+uses-implied-feature:'android.hardware.location.gps','requested android.permission.ACCESS_FINE_LOCATION permission'
+uses-feature:'android.hardware.location.network'
+uses-implied-feature:'android.hardware.location.network','requested android.permission.ACCESS_COURSE_LOCATION permission'
+uses-feature:'android.hardware.touchscreen'
+uses-implied-feature:'android.hardware.touchscreen','assumed you require a touch screen unless explicitly made optional'
+uses-feature:'android.hardware.screen.portrait'
+uses-implied-feature:'android.hardware.screen.portrait','one or more activities have specified a portrait orientation'
+main
+other-activities
+other-receivers
+other-services
+supports-screens: 'small' 'normal' 'large' 'xlarge'
+supports-any-density: 'true'
+locales: '--_--'
+densities: '120' '160' '240' '320'
+```
+
+
+
