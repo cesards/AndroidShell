@@ -48,6 +48,7 @@ or
 $ keytool -list -v -keystore {path_to_keystore}/debug.keystore -alias androiddebugkey -storepass android -keypass android
 ```
 
+<a name="release_keystore">
 #### Release KeyStore
 ```sh
 $ keytool -list -v -keystore {path_to_keystore}/my-release.keystore -alias {alias_name} -storepass {store_pass} -keypass {keypass}
@@ -61,7 +62,7 @@ $ keytool -list -v -keystore {path_to_keystore}/my-release.keystore -alias {alia
 <a name="database">
 #### Database
 
-[__This__](https://gist.github.com/ignasi is a Database getter script, developed by [__Ignasi__](https://github.com/ignasi)
+[__This__](https://gist.github.com/ignasi) is a Database getter script, developed by [__Ignasi__](https://github.com/ignasi)
 ```sh
 #!/bin/bash
  
