@@ -30,6 +30,7 @@
  - <a href="#retrieve_app_private_data_and_db_without_root">__Retrieve application's private data and databases for non debug application without root access__</a>
  - <a href="#identify_frame_rate_issues">__Indentify Frame Rate Issues (Dumpsys)__</a>
  - <a href="#adb_over_wifi">__Use ADB over Wi-Fi without extra application or software__</a>
+ - <a href="#test_new_marshmallow_permissions">__Test new Marshmallow permissions__</a>
 - <a href="#aapt">__AAPT__</a>
  - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
 
@@ -374,6 +375,18 @@ You’re now ready to go!, Enjoy ADB over Wi-fi.
 Use following command to change ADB mode to USB
 ```sh
 $ adb usb
+```
+
+<a name="test_new_marshmallow_permissions">
+#### Test new Marshmallow permissions
+
+In order to test permissions targeting API 23+, we could use following commands to programatically grant and revoke permissions on the device:
+```sh
+$adb pm grant <package_name> <permission_name>
+```
+or 
+```sh
+$adb pm revoke <package_name> <permission_name>
 ```
 
 <br>
