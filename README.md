@@ -12,6 +12,7 @@
  - <a href="#install_application">__Install an application__</a>
  - <a href="#uninstall_application">__Uninstall an application__</a>
  - <a href="#start_activity">__Start an Activity__</a>
+ - <a href="#open_deep_linking_intent">__Open a deep linking intent__</a>
  - <a href="#take_screenshot">__Take an screenshot__</a>
  - <a href="#power_button">__Power button__</a>
  - <a href="#unlock_screen">__Unlock screen__</a>
@@ -133,6 +134,13 @@ $ adb shell am start -a android.intent.action.DELETE -d package:com.package.name
 ```sh
 $ adb shell am start -n com.package.name/.ActivityName
 $ adb shell am start -n com.package.name/com.package.name.ActivityName
+```
+
+<a name="open_deep_linking_intent">
+#### Open a deep linking intent
+
+```sh
+$ adb shell am start -n android.intent.action.VIEW -d "scheme://app/deep/linking"
 ```
 
 <a name="take_screenshot">
