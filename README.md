@@ -5,10 +5,11 @@
 - <a href="#sha1">__SHA-1__</a>
  - <a href="#debug_keystore">__Debug Keystore__</a>
  - <a href="#release_keystore">__Release Keystore__</a>
-- <a href="#adb">__ADB__</a>
+ - <a href="#adb">__ADB__</a>
  - <a href="#database">__Database__</a>
  - <a href="#watching_strictmode">__Watching StrictMode__</a>
  - <a href="#view_connected_devices">__View connected devices__</a>
+ - <a href="#list_running_services">__List of running services__</a>
  - <a href="#install_application">__Install an application__</a>
  - <a href="#uninstall_application">__Uninstall an application__</a>
  - <a href="#start_activity">__Start an Activity__</a>
@@ -106,7 +107,15 @@ $ adb shell dumpsys dropbox data_app_strictmode --print
 ```sh
 $ adb devices
 ```
+
 If multiple devices are attached, use `adb -s DEVICE_ID` to target a specific device
+
+<a name="list_running_services">
+#### List of running services
+
+```sh
+$ adb shell dumpsys activity services
+```
 
 <a name="install_application">
 #### Install an application
