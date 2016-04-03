@@ -16,6 +16,7 @@
  - <a href="#power_button">__Power button__</a>
  - <a href="#unlock_screen">__Unlock screen__</a>
  - <a href="#print_installed_packages">__Print all installed packages__</a>
+ - <a href="#path_application">__Get the path of an installed application__</a>
  - <a href="#simulate_application_being_killed">__Simulate application being killed__</a>
  - <a href="#screen_recording_using_4_4">__Screen recording using Android 4.4__</a>
  - <a href="#check_battery_stats">__Check battery stats__</a>
@@ -170,6 +171,13 @@ $ adb shell inout text "KEYCODE_POWER" "KEYCODE_MENU"
 
 ```sh
 $ adb shell pm list packages -f
+```
+
+<a name="path_application">
+#### Get the path of an installed application
+
+```sh
+$ adb shell pm path app.package.application-name
 ```
 
 <a name="simulate_application_being_killed">
