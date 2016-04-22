@@ -5,7 +5,7 @@
 - <a href="#sha1">__SHA-1__</a>
  - <a href="#debug_keystore">__Debug Keystore__</a>
  - <a href="#release_keystore">__Release Keystore__</a>
- - <a href="#adb">__ADB__</a>
+- <a href="#adb">__ADB__</a>
  - <a href="#database">__Database__</a>
  - <a href="#watching_strictmode">__Watching StrictMode__</a>
  - <a href="#view_connected_devices">__View connected devices__</a>
@@ -32,6 +32,7 @@
  - <a href="#find_out_processor_version_android">__Find out processor version on Android Device (check if it's an ARM, for example)__</a>
  - <a href="#find_out_abi">__Find out Application Binary Interface (ABI) in different devices__</a>
  - <a href="#retrieve_app_private_data_and_db_without_root">__Retrieve application's private data and databases for non debug application without root access__</a>
+ - <a href="#test_app_with_app_standby">__Testing your app with App Standby__</a>
  - <a href="#identify_frame_rate_issues">__Indentify Frame Rate Issues (Dumpsys)__</a>
  - <a href="#adb_over_wifi">__Use ADB over Wi-Fi without extra application or software__</a>
  - <a href="#test_new_marshmallow_permissions">__Test new Marshmallow permissions__</a>
@@ -422,6 +423,30 @@ or
 ```sh
 $adb pm revoke <package_name> <permission_name>
 ```
+
+<br>
+
+<a name="test_app_with_app_standby">
+#### Testing your app with App Standby
+
+[__Source__](http://developer.android.com/intl/ru/training/monitoring-device-state/doze-standby.html?utm_campaign=android_series_appstandby_012116&utm_source=medium&utm_medium=blog#testing_your_app_with_app_standby)
+
+To test the App Standby mode with your app:
+
+1- Configure a hardware device or virtual device with an Android 6.0 (API level 23) or higher system image.
+2- Connect the device to your development machine and install your app.
+3- Run your app and leave it active.
+4- Force the app into App Standby mode by running the following commands:
+```sh
+$ adb shell dumpsys battery unplug
+$ adb shell am set-inactive <packageName> true
+```
+5- Simulate waking your app using the following commands:
+```sh
+$ adb shell am set-inactive <packageName> false
+$ adb shell am get-inactive <packageName>
+```
+6- Observe the behavior of your app after waking it. Make sure the app recovers gracefully from standby mode. In particular, you should check if your app's Notifications and background jobs continue to function as expected.
 
 <br>
 
