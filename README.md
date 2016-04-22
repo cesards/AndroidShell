@@ -36,6 +36,7 @@
  - <a href="#adb_over_wifi">__Use ADB over Wi-Fi without extra application or software__</a>
  - <a href="#test_new_marshmallow_permissions">__Test new Marshmallow permissions__</a>
  - <a href="#test_app_with_app_standby">__Testing your app with App Standby__</a>
+ - <a href="#test_app_doze">__Testing your app with Doze__</a>
 - <a href="#aapt">__AAPT__</a>
  - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
 
@@ -447,6 +448,27 @@ $ adb shell am set-inactive <packageName> false
 $ adb shell am get-inactive <packageName>
 ```
 6- Observe the behavior of your app after waking it. Make sure the app recovers gracefully from standby mode. In particular, you should check if your app's Notifications and background jobs continue to function as expected.
+
+<br>
+
+<a name="test_app_doze">
+#### Testing your app with Doze
+
+[__Source__](http://developer.android.com/intl/ru/training/monitoring-device-state/doze-standby.html?utm_campaign=android_series_appstandby_012116&utm_source=medium&utm_medium=blog#testing_your_app_with_app_standby)
+
+You can test Doze mode by following these steps:
+
+1- Configure a hardware device or virtual device with an Android 6.0 (API level 23) or higher system image.
+2- Connect the device to your development machine and install your app.
+3- Run your app and leave it active.
+4- Shut off the device screen. (The app remains active.)
+5- Force the system to cycle through Doze modes by running the following commands:
+```java
+$ adb shell dumpsys battery unplug
+$ adb shell dumpsys deviceidle step
+```
+You may need to run the second command more than once. Repeat it until the device state changes to idle.
+6- Observe the behavior of your app after you reactivate the device. Make sure the app recovers gracefully when the device exits Doze.
 
 <br>
 
