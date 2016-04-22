@@ -32,10 +32,10 @@
  - <a href="#find_out_processor_version_android">__Find out processor version on Android Device (check if it's an ARM, for example)__</a>
  - <a href="#find_out_abi">__Find out Application Binary Interface (ABI) in different devices__</a>
  - <a href="#retrieve_app_private_data_and_db_without_root">__Retrieve application's private data and databases for non debug application without root access__</a>
- - <a href="#test_app_with_app_standby">__Testing your app with App Standby__</a>
  - <a href="#identify_frame_rate_issues">__Indentify Frame Rate Issues (Dumpsys)__</a>
  - <a href="#adb_over_wifi">__Use ADB over Wi-Fi without extra application or software__</a>
  - <a href="#test_new_marshmallow_permissions">__Test new Marshmallow permissions__</a>
+ - <a href="#test_app_with_app_standby">__Testing your app with App Standby__</a>
 - <a href="#aapt">__AAPT__</a>
  - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
 
