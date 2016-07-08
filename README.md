@@ -3,33 +3,34 @@
 #### Table of Contents
 
 - <a href="#sha1">__SHA-1__</a>
- - <a href="#debug_keystore">__Debug Keystore__</a>
- - <a href="#release_keystore">__Release Keystore__</a>
+  - <a href="#debug_keystore">__Debug Keystore__</a>
+  - <a href="#release_keystore">__Release Keystore__</a>
 - <a href="#adb">__ADB__</a>
- - <a href="#database">__Database__</a>
- - <a href="#watching_strictmode">__Watching StrictMode__</a>
- - <a href="#view_connected_devices">__View connected devices__</a>
- - <a href="#list_running_services">__List of running services__</a>
- - <a href="#install_application">__Install an application__</a>
- - <a href="#uninstall_application">__Uninstall an application__</a>
- - <a href="#start_activity">__Start an Activity__</a>
- - <a href="#open_deep_linking_intent">__Open a deep linking intent__</a>
- - <a href="#take_screenshot">__Take an screenshot__</a>
- - <a href="#power_button">__Power button__</a>
- - <a href="#unlock_screen">__Unlock screen__</a>
- - <a href="#print_installed_packages">__Print all installed packages__</a>
- - <a href="#path_application">__Get the path of an installed application__</a>
- - <a href="#simulate_application_being_killed">__Simulate application being killed__</a>
- - <a href="#screen_recording_using_4_4">__Screen recording using Android 4.4__</a>
- - <a href="#check_battery_stats">__Check battery stats__</a>
- - <a href="#auto_backup_data_android_m">__Auto Backup Data (only in Android M)__</a>
- - <a href="#simulate_fingerprint_inputs_android_m">__Simulate fingerprint inputs (only in Android M)__</a>
- - <a href="#filter_tagname_logcat">__Filter by tagname in Logcat__</a>
- - <a href="#filter_priority_logcat">__Filter by priority in Logcat__</a>
- - <a href="#filter_using_grep_logcat">__Filter using grep in Logcat__</a>
- - <a href="#see_executed_sql_statements_plain_text_logcat">__See the executed SQL statements in plain text in Logcat__</a>
- - <a href="#execute_monkey_test_user_interaction">__Testing - Execute Monkey to test user interaction__</a>
- - <a href="#find_out_processor_version_android">__Find out processor version on Android Device (check if it's an ARM, for example)__</a>
+  - <a href="#show_cold_start_activity_time">__Show cold start Activity time__</a>
+  - <a href="#database">__Database__</a>
+  - <a href="#watching_strictmode">__Watching StrictMode__</a>
+  - <a href="#view_connected_devices">__View connected devices__</a>
+  - <a href="#list_running_services">__List of running services__</a>
+  - <a href="#install_application">__Install an application__</a>
+  - <a href="#uninstall_application">__Uninstall an application__</a>
+  - <a href="#start_activity">__Start an Activity__</a>
+  - <a href="#open_deep_linking_intent">__Open a deep linking intent__</a>
+  - <a href="#take_screenshot">__Take an screenshot__</a>
+  - <a href="#power_button">__Power button__</a>
+  - <a href="#unlock_screen">__Unlock screen__</a>
+  - <a href="#print_installed_packages">__Print all installed packages__</a>
+  - <a href="#path_application">__Get the path of an installed application__</a>
+  - <a href="#simulate_application_being_killed">__Simulate application being killed__</a>
+  - <a href="#screen_recording_using_4_4">__Screen recording using Android 4.4__</a>
+  - <a href="#check_battery_stats">__Check battery stats__</a>
+  - <a href="#auto_backup_data_android_m">__Auto Backup Data (only in Android M)__</a>
+  - <a href="#simulate_fingerprint_inputs_android_m">__Simulate fingerprint inputs (only in Android M)__</a>
+  - <a href="#filter_tagname_logcat">__Filter by tagname in Logcat__</a>
+  - <a href="#filter_priority_logcat">__Filter by priority in Logcat__</a>
+  - <a href="#filter_using_grep_logcat">__Filter using grep in Logcat__</a>
+  - <a href="#see_executed_sql_statements_plain_text_logcat">__See the executed SQL statements in plain text in Logcat__</a>
+  - <a href="#execute_monkey_test_user_interaction">__Testing - Execute Monkey to test user interaction__</a>
+  - <a href="#find_out_processor_version_android">__Find out processor version on Android Device (check if it's an ARM, for example)__</a>
  - <a href="#find_out_abi">__Find out Application Binary Interface (ABI) in different devices__</a>
  - <a href="#retrieve_app_private_data_and_db_without_root">__Retrieve application's private data and databases for non debug application without root access__</a>
  - <a href="#identify_frame_rate_issues">__Indentify Frame Rate Issues (Dumpsys)__</a>
@@ -68,21 +69,33 @@ $ keytool -list -v -keystore {path_to_keystore}/my-release.keystore -alias {alia
 <a name="adb">
 ### ADB
 
+<a name="show_cold_start_activity_time">
+#### Show cold start Activity time
+
+```sh
+$ adb logcat | grep "ActivityManager"
+```
+
+The output would be something similar to:
+```
+ActivityManager: Displayed com.example.launchtime/.LaunchTime: +666ms
+```
+
 <a name="database">
 #### Database
 
 [__This__](https://gist.github.com/ignasi) is a Database getter script, developed by [__Ignasi__](https://github.com/ignasi)
 ```sh
 #!/bin/bash
- 
-# android 4.3+ changes app's internal directory permissions and you can not just pull your 
+
+# android 4.3+ changes app's internal directory permissions and you can not just pull your
 # databases to your computer, so this is a workaround to extract your databases.
 # I only use it for debug, use it under YOUR responsability. IT REQUIRES ROOT
- 
+
 package=$1
 db_name=$2
 path="/data/data/$package/"
- 
+
 rm $db_name
 adb shell "su -c 'cd $path; chmod -R 777 databases; exit'; exit"
 adb pull $path/databases/$db_name
@@ -92,9 +105,9 @@ open $db_name
 <a name="watching_strictmode">
 #### Watching StrictMode
 
-If you’re using `penaltyLog()`, the default, just run 
+If you’re using `penaltyLog()`, the default, just run
 ```sh
-$ adb logcat 
+$ adb logcat
 ```
 and watch the terminal output. Any violations will be logged to your console, slightly rate-limited for duplicate elimination.
 
@@ -300,7 +313,7 @@ The Monkey is a program that runs on your emulator or device and generates pseud
 ```sh
 $ adb shell monkey [options] <event-count>
 # Basic, make 500 random actions.
-$ adb shell monkey -p your.package.name -v 500 
+$ adb shell monkey -p your.package.name -v 500
 ```
 
 Complete information at http://developer.android.com/tools/help/monkey.html
@@ -354,7 +367,7 @@ What matter is the three columns shown. Copy paste results in a spreadsheet. And
 
 ![Image](./images/dumpsys_sample.png)
 
-This is the data you can grab. You can create a stack graph, so every bar contains the sum of the three columns on the left in the data we output. Is the time it takes to update the display list on every frame. 
+This is the data you can grab. You can create a stack graph, so every bar contains the sum of the three columns on the left in the data we output. Is the time it takes to update the display list on every frame.
 
 * The middle column is called process display list. It's the time we take to draw the actual display list
 * The last column is the time we take to swap the buffers, so to give the buffer back to surface flinger. Scrolling or doing any kind of actions should be below 16 millisecond limit. So this app is running at 60FPS, we're vsync'd, everything is going great. You can see that most of the time, you should spend most of the time in process display list, so drawing, executing the display list should be where you spend the bulk of the time.
@@ -387,7 +400,7 @@ $ adb usb
 $ adb devices
 ```
 
-* Change adb mode from USB to tcpip using following command. 
+* Change adb mode from USB to tcpip using following command.
 ```sh
 $ adb tcpip 5555
 # Restarting in TCP mode port: 5555.
@@ -396,7 +409,7 @@ $ adb tcpip 5555
 * Now, adb is running over TCP/IP mode, Let’s find IP address of Android device. Go to Settings in Android device -> About -> Status -> IP address. note down the IP address of connected Android Device.
 * Use following command to connect ADB with IP address
 ```sh
-$ adb connect #.#.#.# 
+$ adb connect #.#.#.#
 # Connected to #.#.#.#:5555.
 ```
 
@@ -420,7 +433,7 @@ In order to test permissions targeting API 23+, we could use following commands 
 ```sh
 $adb pm grant <package_name> <permission_name>
 ```
-or 
+or
 ```sh
 $adb pm revoke <package_name> <permission_name>
 ```
@@ -536,6 +549,3 @@ supports-any-density: 'true'
 locales: '--_--'
 densities: '120' '160' '240' '320'
 ```
-
-
-
