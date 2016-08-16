@@ -31,6 +31,7 @@
   - <a href="#see_executed_sql_statements_plain_text_logcat">__See the executed SQL statements in plain text in Logcat__</a>
   - <a href="#execute_monkey_test_user_interaction">__Testing - Execute Monkey to test user interaction__</a>
   - <a href="#find_out_processor_version_android">__Find out processor version on Android Device (check if it's an ARM, for example)__</a>
+  - [__Test Alarms__](#test-alarms)
  - <a href="#find_out_abi">__Find out Application Binary Interface (ABI) in different devices__</a>
  - <a href="#retrieve_app_private_data_and_db_without_root">__Retrieve application's private data and databases for non debug application without root access__</a>
  - <a href="#identify_frame_rate_issues">__Indentify Frame Rate Issues (Dumpsys)__</a>
@@ -324,6 +325,25 @@ Complete information at http://developer.android.com/tools/help/monkey.html
 ```sh
 $ adb shell cat /proc/cpuinfo
 ```
+
+#### Test Alarms
+
+[__Source__](http://vitovalov.com/2016/07/18/adb-date-changer.html)
+
+To check the alarms that are set on the connected device and to know more about them:
+
+```shell
+$ adb shell dumpsys alarm
+```
+
+To see the alarms from you app you can grep with your package keywords:
+```shell
+$ adb shell dumpsys alarm | grep -A 3 google
+```
+
+So now you can see if you have correctly implemented your alarms functionality using AlarmManager API.
+
+[__More info here__](http://vitovalov.com/2016/07/18/adb-date-changer.html)
 
 <a name="find_out_abi">
 #### Find out Application Binary Interface (ABI) in different devices
