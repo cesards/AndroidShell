@@ -39,8 +39,9 @@
  - <a href="#test_new_marshmallow_permissions">__Test new Marshmallow permissions__</a>
  - <a href="#test_app_with_app_standby">__Testing your app with App Standby__</a>
  - <a href="#test_app_doze">__Testing your app with Doze__</a>
-- <a href="#aapt">__AAPT__</a>
- - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
+ - <a href="#enabling_night_mode_android_nougat">__Enabling Night Mode on Android Nougat__</a>
+ - <a href="#aapt">__AAPT__</a>
+  - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
 
 <br>
 
@@ -506,6 +507,17 @@ $ adb shell dumpsys deviceidle step
 You may need to run the second command more than once. Repeat it until the device state changes to idle.
 
 - Observe the behavior of your app after you reactivate the device. Make sure the app recovers gracefully when the device exits Doze.
+
+<br>
+
+<a name="enabling_night_mode_android_nougat">
+#### Enabling Night Mode on Android Nougat
+
+[__Source__](http://michaelevans.org/blog/2016/08/23/enabling-night-mode-on-android-nougat/)
+```
+$ adb -d shell am start --ez show_night_mode true com.android.systemui/.tuner.TunerActivity
+```
+
 
 <br>
 
