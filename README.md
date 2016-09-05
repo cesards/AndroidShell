@@ -32,6 +32,7 @@
   - <a href="#execute_monkey_test_user_interaction">__Testing - Execute Monkey to test user interaction__</a>
   - <a href="#find_out_processor_version_android">__Find out processor version on Android Device (check if it's an ARM, for example)__</a>
   - [__Test Alarms__](#test-alarms)
+  - [__Query a Content Provider__](#query-a-content-provider)
  - <a href="#find_out_abi">__Find out Application Binary Interface (ABI) in different devices__</a>
  - <a href="#retrieve_app_private_data_and_db_without_root">__Retrieve application's private data and databases for non debug application without root access__</a>
  - <a href="#identify_frame_rate_issues">__Indentify Frame Rate Issues (Dumpsys)__</a>
@@ -345,6 +346,12 @@ $ adb shell dumpsys alarm | grep -A 3 google
 So now you can see if you have correctly implemented your alarms functionality using AlarmManager API.
 
 [__More info here__](http://vitovalov.com/2016/07/18/adb-date-changer.html)
+
+#### Query a Content Provider
+
+```shell
+$ adb shell content query --uri content://your.package.name --projection name
+```
 
 <a name="find_out_abi">
 #### Find out Application Binary Interface (ABI) in different devices
