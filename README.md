@@ -6,6 +6,7 @@
   - <a href="#debug_keystore">__Debug Keystore__</a>
   - <a href="#release_keystore">__Release Keystore__</a>
 - <a href="#adb">__ADB__</a>
+  - <a href="#server_actions">__Server actions__</a>
   - <a href="#show_cold_start_activity_time">__Show cold start Activity time__</a>
   - <a href="#database">__Database__</a>
   - <a href="#watching_strictmode">__Watching StrictMode__</a>
@@ -71,6 +72,19 @@ $ keytool -list -v -keystore {path_to_keystore}/my-release.keystore -alias {alia
 
 <a name="adb">
 ### ADB
+
+<a name="server_actions">
+### Server actions
+
+The following command kills the adb server:
+```sh
+adb kill-server 
+```
+
+This starts the adb server:
+```sh
+adb start-server
+```
 
 <a name="show_cold_start_activity_time">
 #### Show cold start Activity time
@@ -139,8 +153,9 @@ $ adb shell dumpsys activity services
 #### Install an application
 
 ```sh
-$ adb install -r file.apk
-# Optional -r argument reinstalls and keeps any data if the application is already installed on the device.
+$ adb install -r file.apk // (or com.package.name)
+# optional -r argument reinstalls and keeps any data if the application is already installed on the device.
+# optional -s argument installs the app on the SD card instead of the internal storage.
 ```
 
 <a name="uninstall_application">
@@ -153,6 +168,12 @@ $ adb uninstall com.package.name
 To uninstall the application using uninstall dialog:
 ```sh
 $ adb shell am start -a android.intent.action.DELETE -d package:com.package.name
+```
+
+To keep the data in the cache directory, add `-k`
+
+```sh
+$ adb uninstall -k com.package.name
 ```
 
 <a name="start_activity">
@@ -524,7 +545,6 @@ You may need to run the second command more than once. Repeat it until the devic
 ```
 $ adb -d shell am start --ez show_night_mode true com.android.systemui/.tuner.TunerActivity
 ```
-
 
 <br>
 
