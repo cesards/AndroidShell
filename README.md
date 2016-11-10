@@ -42,6 +42,7 @@
  - <a href="#test_app_with_app_standby">__Testing your app with App Standby__</a>
  - <a href="#test_app_doze">__Testing your app with Doze__</a>
  - <a href="#enabling_night_mode_android_nougat">__Enabling Night Mode on Android Nougat__</a>
+ - [__Copy files from/to a device/emulator__](#copy-files-emulator)
 - <a href="#aapt">__AAPT__</a>
   - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
 
@@ -74,7 +75,7 @@ $ keytool -list -v -keystore {path_to_keystore}/my-release.keystore -alias {alia
 ### ADB
 
 <a name="server_actions">
-### Server actions
+#### Server actions
 
 The following command kills the adb server:
 ```sh
@@ -544,6 +545,35 @@ You may need to run the second command more than once. Repeat it until the devic
 [__Source__](http://michaelevans.org/blog/2016/08/23/enabling-night-mode-on-android-nougat/)
 ```
 $ adb -d shell am start --ez show_night_mode true com.android.systemui/.tuner.TunerActivity
+```
+
+<br>
+
+<a name="copy-files-emulator">
+##### Copy files from/to a device/emulator
+
+[__Source__](http://crushingcode.co/do-you-like-to-adb/)
+
+To push a file/dir to device:
+```sh
+$ adb push <local> <remote>
+```
+where `<local>` is file in your local system i.e my_image.png and `<remote>` is file location in device/emulator i.e `/sdcard/Downloads/my_image.png`
+
+Sample:
+```sh
+$ adb push ~/Downloads/my_image.png /sdcard/Downloads/my_image.png
+```
+To pull a file/dir from device
+
+```sh
+$ adb pull <remote> [<local>]
+```
+where `<local>` is file in your local system i.e my_image.png and `<remote>` is file location in device/emulator i.e `/sdcard/Downloads/my_image.png`.
+
+Sample:
+```sh
+adb pull /sdcard/Downloads/my_image.png my_image.png
 ```
 
 <br>
