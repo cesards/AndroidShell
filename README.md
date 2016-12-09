@@ -81,7 +81,7 @@ You can use `adb devices -l` to check information related to them, in order to s
 ```
 adb -s <device-serial> <instructions>
 ```
-where <device-serial> is the number listed when you use `adb devices` and <instructions> are the instructions you want to execute over the device.
+where `<device-serial>` is the number listed when you use `adb devices` and `<instructions>` are the instructions you want to execute over the device.
 
 <a name="server_actions">
 #### Server actions
