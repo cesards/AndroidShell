@@ -6,6 +6,7 @@
   - <a href="#debug_keystore">__Debug Keystore__</a>
   - <a href="#release_keystore">__Release Keystore__</a>
 - <a href="#adb">__ADB__</a>
+  - [__Select a device when multiple devices are connected__](#select-a-device-when-multiple-devices-are-connected) 
   - <a href="#server_actions">__Server actions__</a>
   - <a href="#show_cold_start_activity_time">__Show cold start Activity time__</a>
   - <a href="#database">__Database__</a>
@@ -73,6 +74,14 @@ $ keytool -list -v -keystore {path_to_keystore}/my-release.keystore -alias {alia
 
 <a name="adb">
 ### ADB
+
+#### Select a device when multiple devices are connected
+
+You can use `adb devices -l` to check information related to them, in order to select the one you want. Then:
+```
+adb -s <device-serial> <instructions>
+```
+where <device-serial> is the number listed when you use `adb devices` and <instructions> are the instructions you want to execute over the device.
 
 <a name="server_actions">
 #### Server actions
