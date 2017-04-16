@@ -49,8 +49,8 @@
 
 <br>
 
-<a name="sha1">
 ### SHA-1
+
 In order to get SHA1 to use it in many services, like Google+ Sign In, Maps, In app purchases, we should generate keys for every keystore (certificate):
 
 <a name="debug_keystore">
