@@ -44,7 +44,7 @@
  - <a href="#test_app_doze">__Testing your app with Doze__</a>
  - <a href="#enabling_night_mode_android_nougat">__Enabling Night Mode on Android Nougat__</a>
  - [__Copy files from/to a device/emulator__](#copy-files-emulator)
- - [Trigger a notification without GCM](trigger-a-notification-without-gcm)
+ - [__Trigger a notification without GCM__](trigger-a-notification-without-gcm)
 - <a href="#aapt">__AAPT__</a>
   - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
 
