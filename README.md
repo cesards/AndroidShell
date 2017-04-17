@@ -44,6 +44,7 @@
  - <a href="#test_app_doze">__Testing your app with Doze__</a>
  - <a href="#enabling_night_mode_android_nougat">__Enabling Night Mode on Android Nougat__</a>
  - [__Copy files from/to a device/emulator__](#copy-files-emulator)
+ - [Trigger a notification without GCM](trigger-a-notification-without-gcm)
 - <a href="#aapt">__AAPT__</a>
   - <a href="#check_permissions_avoid_play_store_app_filtering">__Check Permissions in order to avoid Play Store app filtering__</a>
 
@@ -584,6 +585,28 @@ Sample:
 ```sh
 adb pull /sdcard/Downloads/my_image.png my_image.png
 ```
+
+#### Trigger a notification without GCM
+
+[Source](https://plus.google.com/108612553581259107752/posts/ERVnjUAjsbZ)
+
+**IMPORTANT**: Remember to remove **temporally** the following attribute from the declaration of the Broadcast Receiver you want to test, in the Manifest:
+```
+android:permission="com.google.android.c2dm.permission.SEND"
+```
+
+It's based on enabling broadcast receivers.
+```
+am broadcast -a <Intent-Name> -n <Package>/<Receiver-Name-with-leading-dot> <Extras>
+```
+
+Some examples could be:
+```
+adb shell am broadcast -a com.whereismywifeserver.intent.TEST --es sms_body "test from adb"
+adb shell am broadcast -a com.google.android.c2dm.intent.REGISTRATION -n de.example/.GCMBroadcastReceiver 
+--es "registration_id" "1234"
+```
+where `--es` define extra as string
 
 <br>
 
