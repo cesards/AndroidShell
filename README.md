@@ -8,7 +8,7 @@
 - <a href="#adb">__ADB__</a>
   - [__Select a device when multiple devices are connected__](#select-a-device-when-multiple-devices-are-connected) 
   - <a href="#server_actions">__Server actions__</a>
-  - <a href="#show_cold_start_activity_time">__Show cold start Activity time__</a>
+  - [__Show launcher activity cold start time__](#show-launcher-activity-cold-start-time)
   - <a href="#database">__Database__</a>
   - <a href="#watching_strictmode">__Watching StrictMode__</a>
   - <a href="#view_connected_devices">__View connected devices__</a>
@@ -97,17 +97,44 @@ This starts the adb server:
 adb start-server
 ```
 
-<a name="show_cold_start_activity_time">
-#### Show cold start Activity time
+<br>
 
-```sh
+#### Show launcher activity cold start time
+
+[__Source__](https://www.youtube.com/watch?v=oJAS7T-qurk)
+
+```
 $ adb logcat | grep "ActivityManager"
 ```
 
 The output would be something similar to:
+
 ```
-ActivityManager: Displayed com.example.launchtime/.LaunchTime: +666ms
+ActivityManager: Displayed com.example.launchtime/: +666ms
 ```
+
+If we also use want to show the content ready time, we should use the API method `reportFullyDrawn`:
+
+```
+ActivityCompatAdditions.reportFullyDrawn(this);
+```
+Then the time output will be the actual time that takes to Activity to be ready:
+```
+ActivityManager: Displayed com.example.launchtime/.LaunchTimeActivity: +666ms
+ActivityManager: Fully drawn com.example.launchtime/.LaunchTimeActivity: +1s440ms
+```
+
+Amount of time that takes to draw the first frame + the content.
+
+We can also use the `Activity` start command from ADB, with the `W` flag:
+
+```
+adb shell am start -W com.package.name/.LauncherScreenActivity
+```
+
+We will see 3 times related to starting times.
+
+<br>
 
 <a name="database">
 #### Database
