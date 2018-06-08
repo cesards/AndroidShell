@@ -228,6 +228,11 @@ $ adb shell am start -n com.package.name/com.package.name.ActivityName
 ```sh
 $ adb shell am start -n android.intent.action.VIEW -d "scheme://app/deep/linking"
 ```
+or 
+```sh
+$ adb shell am start -n android.intent.action.VIEW -d "https://name.app/user-settings/324" com.packaging.app
+```
+
 
 <a name="take_screenshot">
 #### Take an screenshot
